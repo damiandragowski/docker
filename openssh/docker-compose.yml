@@ -1,0 +1,21 @@
+version: "2"
+services:
+  openssh-server:
+    image: linuxserver/openssh-server
+    container_name: openssh-server
+    hostname: openssh-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - PASSWORD_ACCESS=true
+      - SUDO_ACCESS=false
+      - USER_PASSWORD=tunel
+      - USER_NAME=tunel
+    volumes:
+       - openssh-data:/config
+    ports:
+      - 2222:2222
+    restart: unless-stopped
+volumes:
+  openssh-data:
